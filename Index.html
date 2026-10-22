@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GD Hacks</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #080b0e;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.panel {
+    width: 320px;
+    padding: 24px;
+    background: #111820;
+    border: 1px solid #21ff80;
+    border-radius: 12px;
+    box-shadow: 0 0 25px #00ff6640;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #21ff80;
+    text-shadow: 0 0 12px #21ff8070;
+}
+
+.header p {
+    margin: 8px 0 0;
+    color: #7c8995;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.status {
+    padding: 10px;
+    margin-bottom: 18px;
+    background: #0a100e;
+    border-radius: 6px;
+    color: #21ff80;
+    font-size: 12px;
+    text-align: center;
+}
+
+.hack-btn {
+    width: 100%;
+    padding: 14px;
+    margin: 6px 0;
+    background: #1b2730;
+    color: #e8fff0;
+    border: 1px solid #34454c;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.hack-btn:hover {
+    border-color: #21ff80;
+    box-shadow: 0 0 12px #21ff8030;
+    transform: translateY(-1px);
+}
+
+.hack-btn.active {
+    background: #0b3923;
+    border-color: #21ff80;
+    color: #21ff80;
+    box-shadow: 0 0 12px #21ff8030;
+}
+
+.hack-btn.complete {
+    background: #21ff80;
+    color: #07120b;
+    border-color: #21ff80;
+}
+
+.footer {
+    margin-top: 18px;
+    text-align: center;
+    color: #58666f;
+    font-size: 11px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+    <div class="header">
+        <h1>GD Hacks</h1>
+        <p>GAME CONTROL PANEL</p>
+    </div>
+
+    <div class="status" id="status">
+        ● SYSTEM READY
+    </div>
+
+    <button class="hack-btn" onclick="toggleHack(this, 'Speedhack')">
+        ⚡ Speedhack: OFF
+    </button>
+
+    <button class="hack-btn" onclick="toggleHack(this, 'Noclip')">
+        👻 Noclip: OFF
+    </button>
+
+    <button class="hack-btn" onclick="completeLevel()">
+        ✓ Level Complete
+    </button>
+
+    <div class="footer">
+        GD HACKS // LOCAL PANEL v1.0
+    </div>
+</div>
+
+<script>
+function toggleHack(button, name) {
+    const active = button.classList.toggle("active");
+
+    button.textContent =
+        (name === "Speedhack" ? "⚡ " : "👻 ") +
+        name + ": " + (active ? "ON" : "OFF");
+
+    document.getElementById("status").textContent =
+        active ? "● " + name.toUpperCase() + " ENABLED"
+               : "● SYSTEM READY";
+}
+
+function completeLevel() {
+    const status = document.getElementById("status");
+    status.textContent = "✓ LEVEL COMPLETE!";
+    status.style.color = "#21ff80";
+
+    const button = document.querySelector(".complete");
+    if (button) button.classList.remove("complete");
+
+    event.currentTarget.classList.add("complete");
+    event.currentTarget.textContent = "✓ Level Completed!";
+}
+</script>
+
+</body>
+</html>
